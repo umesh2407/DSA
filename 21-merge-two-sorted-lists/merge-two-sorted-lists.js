@@ -10,42 +10,24 @@
  * @param {ListNode} list2
  * @return {ListNode}
  */
-var mergeTwoLists = function (list1, list2) {
-    let ans = new ListNode();
-    let ansHead = ans;
-
-    while (list1 && list2) {
-        if (list1.val < list2.val) {
-            ans.next = new ListNode(list1.val);
-            ans = ans.next;
-            list1 = list1.next;
-        } else if (list1.val > list2.val) {
-            ans.next = new ListNode(list2.val);
-            ans = ans.next;
-            list2 = list2.next;
+var mergeTwoLists = function (l1, l2) {
+    let start = new ListNode();
+    let curr = start;
+    while (l1 && l2) {
+        if (l1.val < l2.val) {
+            curr.next = l1;
+            l1 = l1.next;
         } else {
-            ans.next = new ListNode(list1.val);
-            ans = ans.next;
-            list1 = list1.next;
-
-            ans.next = new ListNode(list2.val);
-            ans = ans.next;
-            list2 = list2.next;
+            curr.next = l2;
+            l2 = l2.next;
         }
+        curr = curr.next;
     }
-
-    // Jo list bachi hai, usko add karo
-    while (list1) {
-        ans.next = new ListNode(list1.val);
-        ans = ans.next;
-        list1 = list1.next;
+    if (!l1) {
+        curr.next = l2;
     }
-
-    while (list2) {
-        ans.next = new ListNode(list2.val);
-        ans = ans.next;
-        list2 = list2.next;
+    if (!l2) {
+        curr.next = l1;
     }
-
-    return ansHead.next;
+    return start.next;
 };

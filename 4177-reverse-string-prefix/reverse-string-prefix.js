@@ -4,17 +4,16 @@
  * @return {string}
  */
 var reversePrefix = function (s, k) {
-    let result = swap(s.slice(0, k)) + s.slice(k, s.length);
-    return result;
-};
+    let arr = s.split('');
 
-function swap(s) {
-    let arr = s.split("");
-    let n = arr.length;
-    for (let i = 0; i < n / 2; i++) {
-        let temp = arr[i];
-        arr[i] = arr[n - i - 1];
-        arr[n - i - 1] = temp;
+    let left = 0;
+    let right = k - 1;
+
+    while (left < right) {
+        [arr[left], arr[right]] = [arr[right], arr[left]];
+        left++;
+        right--;
     }
-    return arr.join("");
-}
+
+    return arr.join('');
+};

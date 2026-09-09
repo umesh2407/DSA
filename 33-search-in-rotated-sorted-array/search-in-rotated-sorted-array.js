@@ -14,7 +14,7 @@ var search = function (nums, target) {
             return m;
         }
 
-        // Left half is sorted
+        //Check if Left half is sorted or not
         if (nums[l] <= nums[m]) {
             if (nums[l] <= target && target < nums[m]) {
                 r = m - 1;
@@ -22,7 +22,6 @@ var search = function (nums, target) {
                 l = m + 1;
             }
         }
-
         // Right half is sorted
         else {
             if (nums[m] < target && target <= nums[r]) {
